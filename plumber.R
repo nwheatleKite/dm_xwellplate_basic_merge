@@ -28,8 +28,8 @@ function(req) {
     # output <- basic_merge(xwellplate, rawdata_list)
     is_string <- is.character(rawdata_list) & length(rawdata_list) == 1
     is_vector <- is.vector(rawdata_list)
-    leng <- len(rawdata_list)
-    return(list('is_string' = is_string, 'is_vector'=is_vector,'rawdata_list'=rawdata_list, 'len'=leng))
+    # leng <- len(rawdata_list)
+   list('is_string' = is_string, 'is_vector'=is_vector,'rawdata_list'=rawdata_list)
 }
 
 #* @serializer unboxedJSON
