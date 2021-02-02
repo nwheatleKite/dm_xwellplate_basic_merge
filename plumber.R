@@ -15,7 +15,7 @@ function() {
 #* @post /basic_merge
 function(req) {
     xwellplate <- req$body$plate_layout
-    rawdata_list <- req$body$rawdata
+    rawdata_list <- req$body$raw_data
     output <- basic_merge(xwellplate, rawdata_list)
     return(output)
 }
