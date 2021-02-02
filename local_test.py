@@ -16,7 +16,7 @@ with open(rawdata_file, 'r') as file:
     print(rawdata_text)
     input()
 
-rawdata_list = [{"data":rawdata_text}]
+rawdata_list = [{"data":rawdata_text, 'day': 0}]
 output = basic_merge(xwellplate_text, rawdata_list)
 
 print(output)

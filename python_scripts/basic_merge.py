@@ -21,6 +21,7 @@ def basic_merge(xwellplate_string, rawdata_list):
         rawdata_df = raw_data_list_to_df(rawdata_list)
         success = False
         messages= []
+        
         if 'well_id_0' in rawdata_df.columns:
             data = xwellplate_df.merge(rawdata_df, left_on=["plate_id", "well_id_0"], right_on=["plate_id", "well_id_0"], how="left", suffixes=['_xwp', '_rd' ])
             data = data.to_csv(index=False)
