@@ -31,9 +31,13 @@ function(req) {
     is_dataframe <- is.data.frame(rawdata_list)
     is_list <- is.list(rawdata_list)
     thetype <- typeof(rawdata_list)
-
+ #its a dataframe and list
+    #does it an array?
+    len <- length(rawdata_list)
+    cols <- colnames(rawdata_list)
+    dimdf <- dim(rawdata_list)
     # leng <- len(rawdata_list)
-   list('is_string' = is_string, 'is_vector'=is_vector,'rawdata_list'=rawdata_list, 'is_dataframe'=is_dataframe, 'is_list'=is_list, 'thetype'=thetype)
+   list('is_string' = is_string, 'is_vector'=is_vector,'rawdata_list'=rawdata_list, 'is_dataframe'=is_dataframe, 'is_list'=is_list, 'thetype'=thetype, 'len'=len, 'cols'=cols, 'dimdf'=dimdf )
 }
 
 #* @serializer unboxedJSON
