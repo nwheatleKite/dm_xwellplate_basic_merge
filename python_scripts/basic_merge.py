@@ -15,7 +15,7 @@ def raw_data_list_to_df(raw_data_list):
     return combined_raw_data
 
 def basic_merge(xwellplate_string, rawdata_list):
-    # attempts to merge 
+    # attempts to merge
     try:
         xwellplate_df = csv_string_to_df(xwellplate_string)
         rawdata_df = raw_data_list_to_df(rawdata_list)
