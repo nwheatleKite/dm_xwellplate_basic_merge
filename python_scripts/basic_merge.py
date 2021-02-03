@@ -2,26 +2,40 @@ import pandas as pd
 from .csv_string_to_df import csv_string_get_comments
 from .csv_string_to_df import csv_string_to_df
 
-def raw_data_list_to_df(raw_data_list):
+# def raw_data_list_to_df(raw_data_list):
+#     rawdatadf_list = []
+#     for raw_data in raw_data_list:
+#         raw_data_string = raw_data['data']
+#         raw_data_df = csv_string_to_df(raw_data_string)
+#         for key, value in raw_data.items():
+#             if key != "data":
+#                 raw_data_df[key] = value
+#         rawdatadf_list.append(raw_data_df)
+#     combined_raw_data = pd.concat(rawdatadf_list, ignore_index=True)
+#     return combined_raw_data
+
+def compile_rawdatas(rawdata_df):
+    #json array is auto-transformed to dataframe in R
+    #passing R dataframe to python results in pandas df
     rawdatadf_list = []
-    for raw_data in raw_data_list:
-        raw_data_string = raw_data['data']
+    cols = rawdata_df.columns
+    for index, row in rawdata_df.iterrows():
+        raw_data_string = row['data']
         raw_data_df = csv_string_to_df(raw_data_string)
-        for key, value in raw_data.items():
-            if key != "data":
-                raw_data_df[key] = value
+        for col in cols:
+            if col != 'data':
+                raw_data_df[col] = row[col]
         rawdatadf_list.append(raw_data_df)
     combined_raw_data = pd.concat(rawdatadf_list, ignore_index=True)
-    return combined_raw_data
+    return combined_raw_Data
 
 def basic_merge(xwellplate_string, rawdata_list):
     # attempts to merge
     try:
         xwellplate_df = csv_string_to_df(xwellplate_string)
-        rawdata_df = raw_data_list_to_df(rawdata_list)
+        rawdata_df = compile_rawdatas(rawdata_list)
         success = False
         messages= []
-        
         if 'well_id_0' in rawdata_df.columns:
             data = xwellplate_df.merge(rawdata_df, left_on=["plate_id", "well_id_0"], right_on=["plate_id", "well_id_0"], how="left", suffixes=['_xwp', '_rd' ])
             data = data.to_csv(index=False)

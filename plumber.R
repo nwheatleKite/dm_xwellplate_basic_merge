@@ -15,8 +15,8 @@ function() {
 #* @post /basic_merge
 function(req) {
     xwellplate <- req$body$plate_layout
-    rawdata_list <- req$body$raw_data
-    output <- basic_merge(xwellplate, rawdata_list)
+    rawdata_df <- req$body$raw_data
+    output <- basic_merge(xwellplate, rawdata_df)
     return(output)
 }
 
@@ -24,7 +24,7 @@ function(req) {
 #* @post /basic_merge2
 function(req) {
     xwellplate <- req$body$plate_layout
-    rawdata_list <- req$body$raw_data
+    rawdata_df <- req$body$raw_data
     # output <- basic_merge(xwellplate, rawdata_list)
     is_string <- is.character(rawdata_list) & length(rawdata_list) == 1
     is_vector <- is.vector(rawdata_list)
