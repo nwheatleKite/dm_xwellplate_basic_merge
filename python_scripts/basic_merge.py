@@ -27,7 +27,7 @@ def compile_rawdatas(rawdata_df):
                 raw_data_df[col] = row[col]
         rawdatadf_list.append(raw_data_df)
     combined_raw_data = pd.concat(rawdatadf_list, ignore_index=True)
-    return combined_raw_Data
+    return combined_raw_data
 
 def basic_merge(xwellplate_string, rawdata_list):
     # attempts to merge
