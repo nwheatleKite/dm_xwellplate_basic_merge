@@ -20,34 +20,6 @@ function(req) {
     return(output)
 }
 
-#* @serializer unboxedJSON
-#* @post /basic_merge2
-function(req) {
-    xwellplate <- req$body$plate_layout
-    rawdata_df <- req$body$raw_data
-    # output <- basic_merge(xwellplate, rawdata_list)
-    is_string <- is.character(rawdata_list) & length(rawdata_list) == 1
-    is_vector <- is.vector(rawdata_list)
-    is_dataframe <- is.data.frame(rawdata_list)
-    is_list <- is.list(rawdata_list)
-    thetype <- typeof(rawdata_list)
- #its a dataframe and list
-    #does it an array?
-    len <- length(rawdata_list)
-    cols <- colnames(rawdata_list)
-    dimdf <- dim(rawdata_list)
-    # leng <- len(rawdata_list)
-   list('is_string' = is_string, 'is_vector'=is_vector,'rawdata_list'=rawdata_list, 'is_dataframe'=is_dataframe, 'is_list'=is_list, 'thetype'=thetype, 'len'=len, 'cols'=cols, 'dimdf'=dimdf )
-}
-
-#* @serializer unboxedJSON
-#* @post /basic_merge3
-function(req) {
-    xwellplate <- req$body$plate_layout
-    rawdata_list <- req$body$raw_data
-    # output <- basic_merge(xwellplate, rawdata_list)
-    return(xwellplate)
-}
 
 #* @serializer unboxedJSON
 #* @post /validate_xwellplate
